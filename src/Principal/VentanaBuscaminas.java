@@ -34,7 +34,32 @@ public class VentanaBuscaminas extends javax.swing.JFrame {
         arrayBotones[f][c].bomba = 1;
         arrayBotones[f][c].setText("B");
     }
-
+    
+    //cuentaminas realiza un paso previo que consiste en contar para cada celda
+    //el numero de minas que hay alrededor
+    private void cuentaMinas(){
+        int minas = 0;
+        
+        for (int i=0; i<filas; i++){
+            for (int j=0; j<columnas; j++){
+                //uso un bucle anidado para recorrer
+                //las 8 casillas que hay alrededor
+                for (int k= -1; k < 2; k++){
+                    for (int m= -1; m < 2; m++){
+                        if ((i+k >=0) && (j+m >=0) && (i+k < filas) && (j+m < columnas)){
+                            minas = minas + arrayBotones [i+k][j+m].bomba;
+                        }
+                    }
+                }
+                arrayBotones[i][j].numeroMinasAlrededor = minas;
+                minas = 0;
+                if ((arrayBotones[i][j].numeroMinasAlrededor > 0) &&
+                        (arrayBotones[i][j].bomba == 0)){
+                    arrayBotones[i][j].setText(String.valueOf(arrayBotones[i][j].numeroMinasAlrededor));
+                }
+            }
+        }
+    }
     /**
      * Creates new form VentanaBuscaminas
      */
@@ -75,6 +100,7 @@ public class VentanaBuscaminas extends javax.swing.JFrame {
         for (int i=0; i<numMinas; i++){
             ponUnaBomba();
         }
+        cuentaMinas();
     }
     
     
