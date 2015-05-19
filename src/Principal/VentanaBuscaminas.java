@@ -114,14 +114,14 @@ public class VentanaBuscaminas extends javax.swing.JFrame {
                 for (int i=0; i<filas; i++){
                     for (int j=0; j<columnas; j++){
                         if (arrayBotones[i][j].bomba == 1){
-                            arrayBotones[i][j].setText("Explote!!!");
+                            arrayBotones[i][j].setText("Pum!");
                         }else{
                             arrayBotones[i][j].setEnabled(false);
                         }
                     }   
                 }
             }
-                       
+                    
             //declaro un arraylist para ir guardando la lista de botones que tengo que
             //verificar
             ArrayList <Boton> listaDeCasillasAMirar = new ArrayList();
@@ -150,7 +150,6 @@ public class VentanaBuscaminas extends javax.swing.JFrame {
                 }
                 listaDeCasillasAMirar.remove(b);
             }
-            //si no, verificamos la casilla
             miBoton.setText("");
         }
         
