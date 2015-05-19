@@ -55,7 +55,7 @@ public class VentanaBuscaminas extends javax.swing.JFrame {
                 minas = 0;
                 if ((arrayBotones[i][j].numeroMinasAlrededor > 0) &&
                         (arrayBotones[i][j].bomba == 0)){
-                    arrayBotones[i][j].setText(String.valueOf(arrayBotones[i][j].numeroMinasAlrededor));
+                //    arrayBotones[i][j].setText(String.valueOf(arrayBotones[i][j].numeroMinasAlrededor));
                 }
             }
         }
@@ -78,7 +78,7 @@ public class VentanaBuscaminas extends javax.swing.JFrame {
                 //borro el borde del botón
                 boton.setBorder(null);
                 
-                //añado el evento del clic del raton
+                //añado el evento del clic del ratón
                 boton.addMouseListener(new MouseAdapter(){
                     @Override
                     public void mousePressed(MouseEvent evt){
@@ -110,7 +110,18 @@ public class VentanaBuscaminas extends javax.swing.JFrame {
         }
         else{
             //si es una bomba --> explota y se acaba la partida
-            
+            if (miBoton.bomba == 1){
+                for (int i=0; i<filas; i++){
+                    for (int j=0; j<columnas; j++){
+                        if (arrayBotones[i][j].bomba == 1){
+                            arrayBotones[i][j].setText("Explote!!!");
+                        }else{
+                            arrayBotones[i][j].setEnabled(false);
+                        }
+                    }   
+                }
+            }
+                       
             //declaro un arraylist para ir guardando la lista de botones que tengo que
             //verificar
             ArrayList <Boton> listaDeCasillasAMirar = new ArrayList();
@@ -140,7 +151,7 @@ public class VentanaBuscaminas extends javax.swing.JFrame {
                 listaDeCasillasAMirar.remove(b);
             }
             //si no, verificamos la casilla
-            miBoton.setText("0");
+            miBoton.setText("");
         }
         
     }
